@@ -10,7 +10,8 @@ class App extends Component {
     this.state = {
       loggedIn: params.access_token ? true : false,
       searchQuery: '',
-      searchResults: []
+      searchResults: [],
+      favoriteArtists: []
     }
     if (params.access_token) {
       spotifyWebApi.setAccessToken(params.access_token);
@@ -40,6 +41,21 @@ class App extends Component {
     this.setState({searchQuery: event.target.value});
   }
 
+  addToFavorites = (item) => {
+    var list = this.state.favoriteArtists;
+    if(list.indexOf(item) === -1) {
+      this.setState({favoriteArtists: [...list, item]});
+    }
+  }
+
+  removeFromFavorites = (item) => {
+    var list = this.state.favoriteArtists;
+    if(list.indexOf(item) !== -1) {
+      list.splice(list.indexOf(item), 1);
+      this.setState({favoriteArtists: [...list]});
+    }
+  }
+
   render() {
     return (
       <div className="App">
@@ -47,7 +63,9 @@ class App extends Component {
           <button>login</button>
         </a>
         <div><input type="text" value={this.state.searchQuery} onChange={this.handleQueryChange}/><input type="button" value={"Search for " + (this.state.searchQuery ? this.state.searchQuery : "an artist")} onClick={this.handleSearch}/></div>
-        <div>{this.state.searchResults.map((item, key) => <div>{item.name}</div>)}</div> 
+        <div>{this.state.searchResults.map((item, key) => (<div key={key}>{item.name} <button onClick={this.addToFavorites.bind(this, item.name)}>add to favorites</button></div>))}</div>
+        <hr />
+        <div>{this.state.favoriteArtists.map((item, key) => <div key={key}>{item}<button onClick={this.removeFromFavorites.bind(this, item)}>remove to favorites</button></div>)}</div>
       </div>
     );
   }
