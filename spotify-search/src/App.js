@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import Spotify from 'spotify-web-api-js';
+import SearchResult from './SearchResult';
+import FavoriteArtist from './FavoriteArtist';
 
 const spotifyWebApi = new Spotify();
 class App extends Component {
@@ -58,19 +60,21 @@ class App extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log('asd');
   }
 
   render() {
+    const state = this.state;
     return (
       <div className="App">
         <a href="http://localhost:8888">
           <button>login</button>
         </a>
-        <div><form onSubmit={this.handleSubmit.bind(this)}><input type="text" value={this.state.searchQuery} onChange={this.handleQueryChange}/><input type="submit" value={"Search for " + (this.state.searchQuery ? this.state.searchQuery : "an artist")} onClick={this.handleSearch}/></form></div>
-        <div>{this.state.searchResults.map((item, key) => (<div key={key}>{item.name} <button onClick={this.addToFavorites.bind(this, item.name)}>add to favorites</button></div>))}</div>
-        <hr />
-        <div>{this.state.favoriteArtists.map((item, key) => <div key={key}>{item}<button onClick={this.removeFromFavorites.bind(this, item)}>remove to favorites</button></div>)}</div>
+        <form onSubmit={this.handleSubmit.bind(this)}>
+          <input type="text" value={state.searchQuery} onChange={this.handleQueryChange}/>
+          <input type="submit" value={"Search for " + (state.searchQuery ? state.searchQuery : "an artist")} onClick={this.handleSearch}/>
+        </form>
+        <SearchResult list={state.searchResults} add={this.addToFavorites}/>
+        <FavoriteArtist list={state.favoriteArtists} remove={this.removeFromFavorites}/>
       </div>
     );
   }
