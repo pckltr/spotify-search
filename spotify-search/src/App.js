@@ -56,13 +56,18 @@ class App extends Component {
     }
   }
 
+  handleSubmit = (event) => {
+    event.preventDefault();
+    console.log('asd');
+  }
+
   render() {
     return (
       <div className="App">
         <a href="http://localhost:8888">
           <button>login</button>
         </a>
-        <div><input type="text" value={this.state.searchQuery} onChange={this.handleQueryChange}/><input type="button" value={"Search for " + (this.state.searchQuery ? this.state.searchQuery : "an artist")} onClick={this.handleSearch}/></div>
+        <div><form onSubmit={this.handleSubmit.bind(this)}><input type="text" value={this.state.searchQuery} onChange={this.handleQueryChange}/><input type="submit" value={"Search for " + (this.state.searchQuery ? this.state.searchQuery : "an artist")} onClick={this.handleSearch}/></form></div>
         <div>{this.state.searchResults.map((item, key) => (<div key={key}>{item.name} <button onClick={this.addToFavorites.bind(this, item.name)}>add to favorites</button></div>))}</div>
         <hr />
         <div>{this.state.favoriteArtists.map((item, key) => <div key={key}>{item}<button onClick={this.removeFromFavorites.bind(this, item)}>remove to favorites</button></div>)}</div>
