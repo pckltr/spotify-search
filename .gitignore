@@ -59,3 +59,5 @@ typings/
 
 # next.js build output
 .next
+
+auth-server/authorization_code/config.json
