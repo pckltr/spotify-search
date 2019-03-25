@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import Spotify from 'spotify-web-api-js';
-import SearchResult from './SearchResult';
-import FavoriteArtist from './FavoriteArtist';
+import Login from './Login';
+import Authenticated from './Authenticated';
 
 const spotifyWebApi = new Spotify();
 class App extends Component {
@@ -30,15 +30,6 @@ class App extends Component {
     return hashParams;
   }
 
-  handleSearch = () => {
-    spotifyWebApi.search(this.state.searchQuery, ['artist'])
-      .then((response) => {
-        this.setState({
-          searchResults: response.artists.items
-        })
-      })
-  }
-
   handleQueryChange = (event) => {
     this.setState({searchQuery: event.target.value});
   }
@@ -60,21 +51,31 @@ class App extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+    spotifyWebApi.search(this.state.searchQuery, ['artist'])
+      .then((response) => {
+        this.setState({
+          searchResults: response.artists.items
+        })
+      })
   }
 
   render() {
     const state = this.state;
     return (
       <div className="App">
-        <a href="http://localhost:8888">
-          <button>login</button>
-        </a>
-        <form onSubmit={this.handleSubmit.bind(this)}>
-          <input type="text" value={state.searchQuery} onChange={this.handleQueryChange}/>
-          <input type="submit" value={"Search for " + (state.searchQuery ? state.searchQuery : "an artist")} onClick={this.handleSearch}/>
-        </form>
-        <SearchResult list={state.searchResults} add={this.addToFavorites}/>
-        <FavoriteArtist list={state.favoriteArtists} remove={this.removeFromFavorites}/>
+        {
+          !state.loggedIn ?
+          <Login /> :
+          <Authenticated
+            searchQuery={state.searchQuery}
+            searchResults={state.searchResults}
+            favoriteArtists={state.favoriteArtists}
+            submit={this.handleSubmit}
+            change={this.handleQueryChange} 
+            add={this.addToFavorites}
+            remove={this.removeFromFavorites}
+          />
+        }
       </div>
     );
   }
