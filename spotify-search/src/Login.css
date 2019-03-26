@@ -1,0 +1,24 @@
+.login-wrapper {
+    align-self: center;
+    margin: auto;
+}
+
+.login-link {
+    display: inline-block;
+}
+
+.login-button {
+    cursor: pointer;
+    color: #FFFFFF;
+    background-color: #1DB954;
+    border: 0;
+    border-radius: 2em;
+    padding: 1em 4em;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+}
+
+.login-button:hover {
+    background-color: #1ED760;
+}
