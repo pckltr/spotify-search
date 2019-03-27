@@ -1,0 +1,25 @@
+.search-form {
+    width: 100%;
+    display: flex;
+}
+
+.search-input {
+    flex: 1;
+    border: none;
+    background-color: #282828;
+    outline: none;
+}
+
+.search-button {
+    background-color: #404040;
+    cursor: pointer;
+}
+
+.search-input,
+.search-button {
+    color: #FFFFFF;
+    border: none;
+    padding: 1em;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+}

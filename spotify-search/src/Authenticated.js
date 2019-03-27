@@ -7,7 +7,7 @@ class Authenticated extends React.Component {
   render() {
     const props = this.props;
     return (
-      <div>
+      <div className="authenticated">
         <SearchForm
           submit={props.submit}
           change={props.change}

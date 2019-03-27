@@ -5,3 +5,7 @@
     height: 100vh;
     display: flex;
 }
+
+.authenticated {
+    flex: 1;
+}

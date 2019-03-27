@@ -5,9 +5,9 @@ class SearchForm extends React.Component {
   render() {
     const props = this.props;
     return (
-      <form onSubmit={props.submit.bind(this)}>
-        <input type="text" value={props.searchQuery} onChange={props.change}/>
-        <input type="submit" value={"Search for " + (props.searchQuery ? props.searchQuery : "an artist")}/>
+      <form className="search-form" onSubmit={props.submit.bind(this)}>
+        <input className="search-input" type="text" value={props.searchQuery} onChange={props.change}/>
+        <input className="search-button" type="submit" value={"Search for " + (props.searchQuery ? props.searchQuery : "an artist")}/>
       </form>
     )
   }
