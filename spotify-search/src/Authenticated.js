@@ -12,9 +12,12 @@ class Authenticated extends React.Component {
           submit={props.submit}
           change={props.change}
           searchQuery={props.searchQuery}/>
-        <SearchResult
-          list={props.searchResults}
-          add={props.add}/>
+          
+        {props.searchResults.length > 0 ? 
+          <SearchResult
+            list={props.searchResults}
+            add={props.add}/> : null}
+
         <FavoriteArtist
           list={props.favoriteArtists}
           remove={props.remove}/>

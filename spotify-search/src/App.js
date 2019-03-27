@@ -10,7 +10,7 @@ class App extends Component {
     super();
     const params = this.getHashParams();
     this.state = {
-      loggedIn: params.access_token ? true : false,
+      loggedIn: (params.access_token ? true : false),
       searchQuery: '',
       searchResults: [],
       favoriteArtists: []
@@ -24,7 +24,7 @@ class App extends Component {
     var hashParams = {};
     var e, r = /([^&;=]+)=?([^&;]*)/g,
         q = window.location.hash.substring(1);
-    while ( e = r.exec(q)) {
+    while ( (e = r.exec(q)) ) {
        hashParams[e[1]] = decodeURIComponent(e[2]);
     }
     return hashParams;

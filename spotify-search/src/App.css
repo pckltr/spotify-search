@@ -9,3 +9,27 @@
 .authenticated {
     flex: 1;
 }
+
+.table {
+    width: 100%;
+    text-align: left;
+    margin-top: 1em;
+    color: #b3b3b3;
+}
+
+th {
+    font-weight: normal;
+}
+
+th, td {
+    padding: 0.5em 0.8em;
+}
+
+.table-link {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.table-link:hover {
+    border-bottom: 1px solid #FFFFFF;
+}
