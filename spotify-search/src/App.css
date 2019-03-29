@@ -21,8 +21,13 @@ th {
     font-weight: normal;
 }
 
+.artist-cell {
+    width: 99%;
+}
+
 th, td {
     padding: 0.5em 0.8em;
+    white-space: nowrap;
 }
 
 .table-link {

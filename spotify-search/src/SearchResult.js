@@ -17,7 +17,7 @@ class SearchResult extends React.Component {
         <tbody>
           {props.list.map((item, key) => (
             <tr key={key}>
-              <td><a target="_blank" rel="noopener noreferrer" className="table-link" href={item.external_urls.spotify}>{item.name}</a></td>
+              <td className="artist-cell"><a target="_blank" rel="noopener noreferrer" className="table-link" href={item.external_urls.spotify}>{item.name}</a></td>
               <td>{item.followers.total}</td>
               <td>{item.popularity}</td>
               <td><button onClick={props.add.bind(this, item.name)}>add to favorites</button></td>
