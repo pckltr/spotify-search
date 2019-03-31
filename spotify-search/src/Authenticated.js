@@ -27,33 +27,40 @@ class Authenticated extends React.Component {
   }
   render() {
     const props = this.props;
+    const state = this.state;
     return (
       <div className="authenticated">
-      <nav>
-        <ul className="menu">
-          <li className="menu-item"><button onClick={this.handleClick.bind(this, "s")}>Search</button></li>
-          <li className="menu-item"><button onClick={this.handleClick.bind(this, "f")}>Favorite Artists</button></li>
-        </ul>
-      </nav>
-        {
-          this.state.showSearch ?
-            <div className="search-page">
-              <SearchForm
-                submit={props.submit}
-                change={props.change}
-                searchQuery={props.searchQuery}/>
-                
-              {props.searchResults.length > 0 ? 
-                <SearchResult
-                  list={props.searchResults}
-                  add={props.add}/> : null}
-            </div>
-          :
+        <nav className="navigation">
+          <ul className="menu">
+            <li className={"menu-item" + (state.showSearch ? " selected" : "")}>
+              <button className="menu-button" onClick={this.handleClick.bind(this, "s")}>Search</button>
+            </li>
+            <li className={"menu-item" + (state.showSearch ? "" : " selected")}>
+              <button className="menu-button" onClick={this.handleClick.bind(this, "f")}>Favorites</button>
+            </li>
+          </ul>
+        </nav>
+        <div className="main-content">
+          {
+            state.showSearch ?
+              <div className="search-page">
+                <SearchForm
+                  submit={props.submit}
+                  change={props.change}
+                  searchQuery={props.searchQuery}/>
+                  
+                {props.searchResults.length > 0 ? 
+                  <SearchResult
+                    list={props.searchResults}
+                    add={props.add}/> : null}
+              </div>
+            :
 
-          <FavoriteArtist
-            list={props.favoriteArtists}
-            remove={props.remove}/>
-        }
+            <FavoriteArtist
+              list={props.favoriteArtists}
+              remove={props.remove}/>
+          }
+        </div>
       </div>
     )
   }
