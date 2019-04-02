@@ -52,6 +52,7 @@ class Authenticated extends React.Component {
                 {props.searchResults.length > 0 ? 
                   <SearchResult
                     list={props.searchResults}
+                    isFavorite={props.isFavorite}
                     add={props.add}/> : null}
               </div>
             :

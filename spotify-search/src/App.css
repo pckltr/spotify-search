@@ -89,3 +89,11 @@ th, td {
 .search-page {
     height: 100%;
 }
+
+.button-fav {
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    outline: none;
+}

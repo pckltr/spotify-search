@@ -34,16 +34,22 @@ class App extends Component {
     this.setState({searchQuery: event.target.value});
   }
 
+  isFavorite = (item) => {
+    const list = this.state.favoriteArtists;
+    console.log(list, item, (list.indexOf(item) !== -1));
+    return (list.indexOf(item) !== -1);
+  }
+
   addToFavorites = (item) => {
-    var list = this.state.favoriteArtists;
-    if(list.indexOf(item) === -1) {
+    const list = this.state.favoriteArtists;
+    if(this.isFavorite(item) === false) {
       this.setState({favoriteArtists: [...list, item]});
     }
   }
 
   removeFromFavorites = (item) => {
-    var list = this.state.favoriteArtists;
-    if(list.indexOf(item) !== -1) {
+    const list = this.state.favoriteArtists;
+    if(this.isFavorite(item) === false) {
       list.splice(list.indexOf(item), 1);
       this.setState({favoriteArtists: [...list]});
     }
@@ -74,6 +80,7 @@ class App extends Component {
             change={this.handleQueryChange} 
             add={this.addToFavorites}
             remove={this.removeFromFavorites}
+            isFavorite={this.isFavorite}
           />
         }
       </div>
