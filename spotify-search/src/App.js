@@ -36,21 +36,25 @@ class App extends Component {
 
   isFavorite = (item) => {
     const list = this.state.favoriteArtists;
-    console.log(list, item, (list.indexOf(item) !== -1));
     return (list.indexOf(item) !== -1);
   }
 
-  addToFavorites = (item) => {
+  addToFavorites = (item, e) => {
     const list = this.state.favoriteArtists;
     if(this.isFavorite(item) === false) {
+      e.target.classList.remove("far");
+      e.target.classList.add("fas");      
       this.setState({favoriteArtists: [...list, item]});
     }
   }
 
-  removeFromFavorites = (item) => {
+  removeFromFavorites = (item, e) => {
+    debugger;
     const list = this.state.favoriteArtists;
     if(this.isFavorite(item) === false) {
       list.splice(list.indexOf(item), 1);
+      e.target.classList.remove("fas");
+      e.target.classList.add("far");  
       this.setState({favoriteArtists: [...list]});
     }
   }

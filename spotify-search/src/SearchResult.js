@@ -21,7 +21,7 @@ class SearchResult extends React.Component {
                 <td className="artist-cell"><a target="_blank" rel="noopener noreferrer" className="table-link" href={item.external_urls.spotify}>{item.name}</a></td>
                 <td>{item.followers.total}</td>
                 <td>{item.popularity}</td>
-                <td><button className="button-fav" onClick={props.add.bind(this, item.name)}><i className={"fa-heart" + (props.isFavorite.bind(this, item.name) ? " fas" : " far")}></i></button></td>
+                <td><button className="button-fav" onClick={props.add.bind(this, item.name)}><i className="fa-heart far"></i></button></td>
               </tr>
             ))}
           </tbody>
